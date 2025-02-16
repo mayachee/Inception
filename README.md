@@ -21,18 +21,54 @@
 ### Connecting to a Server Using SSH
         hostname -I
         ssh UserName@IPAddressHostname -p 4242
-      
-my containers :
 
--- project java 
+# How to Start Docker on Debian Virtual Machine
 
--- setup a ‎JDK 21
+## 1. Check if Docker is Installed
+Open a terminal and run:  
+```bash
+docker --version
+```
+If you get a version number, Docker is installed. If not, install it with:
 
--- WordPress + php-fpm
+```bash
+sudo apt update
+sudo apt install docker.io
+```
 
--- MariaDB
+## 2. Start Docker Service
+```bash
+sudo systemctl start docker
+```
 
--- NGINX with TLSv1.2 or TLSv1.3 only
+## 3. Enable Docker to Start on Boot (optional)
+```bash
+sudo systemctl enable docker
+```
+
+## 4. Verify Docker Status
+```bash
+sudo systemctl status docker
+```
+You should see `active (running)` if Docker is running.
+
+## 5. Run a Test Container
+To confirm Docker works, run:  
+```bash
+sudo docker run hello-world
+```
+
+## (Optional) Run Docker Without `sudo`
+Add your user to the `docker` group:  
+```bash
+sudo usermod -aG docker $USER
+```
+Then log out and back in for the changes to take effect.
+
+---
+
+You're now ready to use Docker on your Debian virtual machine! 🚀
+
 
 
 This document is a System Administration related exercise.
