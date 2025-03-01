@@ -1,0 +1,67 @@
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    volumes:
+      - mariadb_files:/data
+    env_file:
+      - .env
+    networks:
+      - docker_network
+    secrets:
+      - sec
+    restart:
+      always
+
+  nginx:
+    build: ./requirements/nginx 
+    container_name: nginx
+    ports:
+      - "443:443"
+    networks:
+      - docker_network
+    env_file:
+      - .env
+    volumes:
+      - wordpress_files:/var/www/html  
+    restart:
+      always
+
+  wordpress:
+    build: ./requirements/wordpress 
+    container_name: wp-php
+    volumes:
+      - wordpress_files:/var/www/html  
+    networks:
+      - docker_network
+    env_file:
+      - .env
+    secrets:
+      - sec
+    restart:
+      always
+
+volumes:
+  mariadb_files:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/mayache-/data/mariadb_files
+      o: bind
+  wordpress_files:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/mayache-/data/wordpress_files
+      o: bind
+
+networks:
+  docker_network:
+    name: docker_network
+    driver: bridge
+
+secrets:
+  sec:
+    file: ../secrets/sec
+
