@@ -1,3 +1,25 @@
+### How to start
+
+1. this you should create you .env in folder src
+2. create folder secets in your folder
+3. do this command:
+   
+       sudo docker rm $(sudo docker ps -aq) 
+       sudo docker rmi $(sudo docker images -q)
+       sudo docker volume rm $(sudo docker volume ls -q)
+
+4. do this command:
+
+       make fclean
+
+5. create your data path
+
+       make data_paths
+
+7. in the end:
+
+       make
+
 # Inception
 
 
