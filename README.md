@@ -1,4 +1,5 @@
-### How to start
+# Inception
+## How to start
 
 1. this you should create you .env in folder src
 2. create folder secets in your folder
@@ -19,8 +20,6 @@
 7. in the end:
 
        make
-
-# Inception
 
 
 ### SSH Commands
